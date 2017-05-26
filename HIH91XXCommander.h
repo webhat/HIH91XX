@@ -1,15 +1,15 @@
-#ifndef HONEYWELL_HIH61XXCommander_H
-#define HONEYWELL_HIH61XXCommander_H
+#ifndef HONEYWELL_HIH91XXCommander_H
+#define HONEYWELL_HIH91XXCommander_H
 
 //  author: Tomas Van Verrewegen <tomasvanverrewegen@telenet.be>
 //  version: 0.2
 
-#include "HIH61XX.h"
+#include "HIH91XX.h"
 
 
 
-class HIH61XXCommander
-  : public HIH61XX
+class HIH91XXCommander
+  : public HIH91XX
 {
   public:
 
@@ -24,7 +24,7 @@ class HIH61XXCommander
   enum AlarmPolarity { ActiveHighPolarity = 0, ActiveLowPolarity = 1 };
   enum AlarmOuputConfig { PushPullOuputConfig = 0, OpenDrainOuputConfig = 1 };
   
-  HIH61XXCommander(uint8_t address, uint8_t powerPin);
+  HIH91XXCommander(uint8_t address, uint8_t powerPin);
 
   uint8_t setAddress(uint8_t address);
   

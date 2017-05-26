@@ -1,5 +1,5 @@
-#ifndef HONEYWELL_HIH61XX_H
-#define HONEYWELL_HIH61XX_H
+#ifndef HONEYWELL_HIH91XX_H
+#define HONEYWELL_HIH91XX_H
 
 //  author: Tomas Van Verrewegen <tomasvanverrewegen@telenet.be>
 //  version: 0.2
@@ -9,7 +9,7 @@
 
 
 
-class HIH61XX
+class HIH91XX
 {
   public:
   
@@ -30,8 +30,8 @@ class HIH61XX
     FlagsMask               = ~ErrorMask
   };
   
-  HIH61XX(uint8_t address, uint8_t powerPin = 255);
-  virtual ~HIH61XX() { }
+  HIH91XX(uint8_t address, uint8_t powerPin = 255);
+  virtual ~HIH91XX() { }
   
   uint8_t address() const { return a; }
   uint8_t powerPin() const { return p; }

@@ -1,8 +1,8 @@
-#include "HIH61XX.h"
+#include "HIH91XX.h"
 
 
 
-HIH61XX::HIH61XX(uint8_t address, uint8_t powerPin)
+HIH91XX::HIH91XX(uint8_t address, uint8_t powerPin)
   : a(address), p(powerPin), f(0), h(0), t(0)
 {
   if(p < 255) {
@@ -13,7 +13,7 @@ HIH61XX::HIH61XX(uint8_t address, uint8_t powerPin)
 
 
 
-uint8_t HIH61XX::start()
+uint8_t HIH91XX::start()
 {
   if(p < 255) {
     digitalWrite(p, HIGH);
@@ -22,7 +22,7 @@ uint8_t HIH61XX::start()
   return setError(0);
 }
 
-uint8_t HIH61XX::stop()
+uint8_t HIH91XX::stop()
 {
   if(p < 255) {
     digitalWrite(p, LOW);
@@ -33,7 +33,7 @@ uint8_t HIH61XX::stop()
 
 
 
-uint8_t HIH61XX::update()
+uint8_t HIH91XX::update()
 {
   if(!isRunning()) {
     return setError(NotRunningError);
@@ -85,7 +85,7 @@ uint8_t HIH61XX::update()
 
 
 
-uint8_t HIH61XX::commandRequest(Stream& stream)
+uint8_t HIH91XX::commandRequest(Stream& stream)
 {
   if(stream.available()) {
     return commandProcess(stream, stream.read());
@@ -93,7 +93,7 @@ uint8_t HIH61XX::commandRequest(Stream& stream)
   return commandReply(stream, 255);
 }
 
-uint8_t HIH61XX::commandProcess(Stream& stream, uint8_t command)
+uint8_t HIH91XX::commandProcess(Stream& stream, uint8_t command)
 {
   switch(command) {
   //  get humidity

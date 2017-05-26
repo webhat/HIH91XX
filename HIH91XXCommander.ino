@@ -1,14 +1,14 @@
 #include <Wire.h>
-#include "HIH61XX.h"
-#include "HIH61XXCommander.h"
+#include "HIH91XX.h"
+#include "HIH91XXCommander.h"
 
 
 
-//  Create an HIH61XXCommander with I2C address 0x27, powered by digital pin 3
+//  Create an HIH91XXCommander with I2C address 0x27, powered by digital pin 3
 //  If you want to use Command Mode you MUST use the powerPin!
-HIH61XXCommander hih(0x27, 3);
+HIH91XXCommander hih(0x27, 3);
 
-#define NEWADDR 0x2c
+#define NEWADDR 0x2d
 
 
 
@@ -42,9 +42,9 @@ void loop()
   Serial.print("StartupMode:              ");
   Serial.println(hih.startupMode() ? "FastStartup" : "SlowStartup");
   //  set the fast startup mode (3ms)
-  //  hih.setStartupMode(HIH61XXCommander::FastStartup);
+  //  hih.setStartupMode(HIH91XXCommander::FastStartup);
   //  set the slow startup mode (10ms)
-  //  hih.setStartupMode(HIH61XXCommander::SlowStartup);
+  //  hih.setStartupMode(HIH91XXCommander::SlowStartup);
 
   Serial.print("High alarm on (raw):      ");
   Serial.println(hih.highAlarmOn_Raw());
@@ -64,13 +64,13 @@ void loop()
 
   Serial.print("High alarm polarity:      ");
   Serial.println(hih.highAlarmPolarity() ? "ActiveLowPolarity" : "ActiveHighPolarity");
-  //  hih.setHighAlarmPolarity(HIH61XXCommander::ActiveHighPolarity);
-  //  hih.setHighAlarmPolarity(HIH61XXCommander::ActiveLowPolarity);
+  //  hih.setHighAlarmPolarity(HIH91XXCommander::ActiveHighPolarity);
+  //  hih.setHighAlarmPolarity(HIH91XXCommander::ActiveLowPolarity);
 
   Serial.print("High alarm output config: ");
   Serial.println(hih.highAlarmOutputConfig() ? "OpenDrainOuputConfig" : "PushPullOuputConfig");
-  //  hih.setHighAlarmOutputConfig(HIH61XXCommander::PushPullOuputConfig);
-  //  hih.setHighAlarmOutputConfig(HIH61XXCommander::OpenDrainOuputConfig);
+  //  hih.setHighAlarmOutputConfig(HIH91XXCommander::PushPullOuputConfig);
+  //  hih.setHighAlarmOutputConfig(HIH91XXCommander::OpenDrainOuputConfig);
 
   //  same as above for the low alarm... (not included)
 
@@ -85,15 +85,15 @@ void loop()
   //  To write the changes to the chip use:
   //  hih.writeEEPROM();
   //  But then you still have to cycle the power for the changes to take effect, so it's easier to do:
-  //hih.restart();
+  hih.restart();
   //  which will automatically commit all changes made.
   //  If you don't want to save your changes, use:
   //  hih.resetEEPROM();
 
 
   //  This is how you change the I2C address to 0x28:
-    hih.setAddress(NEWADDR);
-    hih.restart();      
+  //  hih.setAddress(NEWADDR);
+  //  hih.restart();      
 
   //  Make sure we're not in Command Mode any more:
   hih.leaveCommandMode();

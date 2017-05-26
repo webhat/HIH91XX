@@ -1,9 +1,9 @@
-#include "HIH61XXCommander.h"
+#include "HIH91XXCommander.h"
 
 
 
-HIH61XXCommander::HIH61XXCommander(uint8_t address, uint8_t powerPin)
-  : HIH61XX(address, powerPin), g(0)
+HIH91XXCommander::HIH91XXCommander(uint8_t address, uint8_t powerPin)
+  : HIH91XX(address, powerPin), g(0)
 {
   for(int i = 0; i < 7; ++i) {
     e[i] = 0;
@@ -12,7 +12,7 @@ HIH61XXCommander::HIH61XXCommander(uint8_t address, uint8_t powerPin)
 
 
 
-uint8_t HIH61XXCommander::start()
+uint8_t HIH91XXCommander::start()
 {
   if(!isRunning()) {
     setError(0);
@@ -28,7 +28,7 @@ uint8_t HIH61XXCommander::start()
   return 0;
 }
 
-uint8_t HIH61XXCommander::stop()
+uint8_t HIH91XXCommander::stop()
 {
   if(isRunning()) {
     uint8_t result = 0;
@@ -54,7 +54,7 @@ uint8_t HIH61XXCommander::stop()
   else return 1;
 }
 
-uint8_t HIH61XXCommander::restart()
+uint8_t HIH91XXCommander::restart()
 {
   stop();
   delay(1);
@@ -63,7 +63,7 @@ uint8_t HIH61XXCommander::restart()
 
 
 
-uint8_t HIH61XXCommander::enterCommandMode()
+uint8_t HIH91XXCommander::enterCommandMode()
 {
   setError(0);
   
@@ -95,7 +95,7 @@ uint8_t HIH61XXCommander::enterCommandMode()
   }
 }
 
-uint8_t HIH61XXCommander::leaveCommandMode()
+uint8_t HIH91XXCommander::leaveCommandMode()
 {
   setError(0);
   
@@ -116,12 +116,12 @@ uint8_t HIH61XXCommander::leaveCommandMode()
 
 
 
-const uint16_t* HIH61XXCommander::eeprom() const
+const uint16_t* HIH91XXCommander::eeprom() const
 {
   return e;
 }
 
-void HIH61XXCommander::setEEPROM(uint16_t* eeprom)
+void HIH91XXCommander::setEEPROM(uint16_t* eeprom)
 {
   for(int i = 0; i < 8; ++i) {
     e[i] = eeprom[i];
@@ -131,7 +131,7 @@ void HIH61XXCommander::setEEPROM(uint16_t* eeprom)
 
 
 
-uint8_t HIH61XXCommander::readEEPROM()
+uint8_t HIH91XXCommander::readEEPROM()
 {
   setError(0);
   
@@ -155,7 +155,7 @@ uint8_t HIH61XXCommander::readEEPROM()
   return 0;
 }
 
-uint8_t HIH61XXCommander::writeEEPROM()
+uint8_t HIH91XXCommander::writeEEPROM()
 {
   setError(0);
   
@@ -181,7 +181,7 @@ uint8_t HIH61XXCommander::writeEEPROM()
   return 0;
 }
 
-uint8_t HIH61XXCommander::resetEEPROM()
+uint8_t HIH91XXCommander::resetEEPROM()
 {
   setError(0);
   
@@ -209,7 +209,7 @@ uint8_t HIH61XXCommander::resetEEPROM()
 
 
 
-uint8_t HIH61XXCommander::setAddress(uint8_t address)
+uint8_t HIH91XXCommander::setAddress(uint8_t address)
 {
   setError(0);
   
@@ -223,7 +223,7 @@ uint8_t HIH61XXCommander::setAddress(uint8_t address)
   return 0;
 }
 
-// uint8_t HIH61XXCommander::setPowerPin(uint8_t power)
+// uint8_t HIH91XXCommander::setPowerPin(uint8_t power)
 // {
 //   setError(0);
 //   p = power;
@@ -233,7 +233,7 @@ uint8_t HIH61XXCommander::setAddress(uint8_t address)
 
 
 
-void HIH61XXCommander::setStartupMode(StartupMode startupMode)
+void HIH91XXCommander::setStartupMode(StartupMode startupMode)
 {
   setError(0);
   if(this->startupMode() != startupMode) {
@@ -242,7 +242,7 @@ void HIH61XXCommander::setStartupMode(StartupMode startupMode)
   }
 }
 
-void HIH61XXCommander::setHighAlarmOn_Raw(uint16_t raw)
+void HIH91XXCommander::setHighAlarmOn_Raw(uint16_t raw)
 {
   setError(0);
   if(highAlarmOn_Raw() != raw) {
@@ -251,7 +251,7 @@ void HIH61XXCommander::setHighAlarmOn_Raw(uint16_t raw)
   }
 }
 
-void HIH61XXCommander::setHighAlarmOff_Raw(uint16_t raw)
+void HIH91XXCommander::setHighAlarmOff_Raw(uint16_t raw)
 {
   setError(0);
   if(highAlarmOff_Raw() != raw) {
@@ -260,7 +260,7 @@ void HIH61XXCommander::setHighAlarmOff_Raw(uint16_t raw)
   }
 }
 
-void HIH61XXCommander::setHighAlarmPolarity(AlarmPolarity polarity)
+void HIH91XXCommander::setHighAlarmPolarity(AlarmPolarity polarity)
 {
   setError(0);
   if(highAlarmPolarity() != polarity) {
@@ -269,7 +269,7 @@ void HIH61XXCommander::setHighAlarmPolarity(AlarmPolarity polarity)
   }
 }
 
-void HIH61XXCommander::setHighAlarmOutputConfig(AlarmOuputConfig config)
+void HIH91XXCommander::setHighAlarmOutputConfig(AlarmOuputConfig config)
 {
   setError(0);
   if(highAlarmOutputConfig() != config) {
@@ -278,7 +278,7 @@ void HIH61XXCommander::setHighAlarmOutputConfig(AlarmOuputConfig config)
   }
 }
 
-void HIH61XXCommander::setLowAlarmOn_Raw(uint16_t raw)
+void HIH91XXCommander::setLowAlarmOn_Raw(uint16_t raw)
 {
   setError(0);
   if(lowAlarmOn_Raw() != raw) {
@@ -287,7 +287,7 @@ void HIH61XXCommander::setLowAlarmOn_Raw(uint16_t raw)
   }
 }
 
-void HIH61XXCommander::setLowAlarmOff_Raw(uint16_t raw)
+void HIH91XXCommander::setLowAlarmOff_Raw(uint16_t raw)
 {
   setError(0);
   if(lowAlarmOff_Raw() != raw) {
@@ -296,7 +296,7 @@ void HIH61XXCommander::setLowAlarmOff_Raw(uint16_t raw)
   }
 }
 
-void HIH61XXCommander::setLowAlarmPolarity(AlarmPolarity polarity)
+void HIH91XXCommander::setLowAlarmPolarity(AlarmPolarity polarity)
 {
   setError(0);
   if(lowAlarmPolarity() != polarity) {
@@ -305,7 +305,7 @@ void HIH61XXCommander::setLowAlarmPolarity(AlarmPolarity polarity)
   }
 }
 
-void HIH61XXCommander::setLowAlarmOutputConfig(AlarmOuputConfig config)
+void HIH91XXCommander::setLowAlarmOutputConfig(AlarmOuputConfig config)
 {
   setError(0);
   if(lowAlarmOutputConfig() != config) {
@@ -314,7 +314,7 @@ void HIH61XXCommander::setLowAlarmOutputConfig(AlarmOuputConfig config)
   }
 }
 
-void HIH61XXCommander::setCustomerId(uint32_t id)
+void HIH91XXCommander::setCustomerId(uint32_t id)
 {
   setError(0);
   if(customerId() != id) {
@@ -327,7 +327,7 @@ void HIH61XXCommander::setCustomerId(uint32_t id)
 
 
 
-uint8_t HIH61XXCommander::commandWrite(uint8_t command, uint8_t data1, uint8_t data2)
+uint8_t HIH91XXCommander::commandWrite(uint8_t command, uint8_t data1, uint8_t data2)
 {
   Wire.beginTransmission(a);
   Wire.write(command);
@@ -336,12 +336,12 @@ uint8_t HIH61XXCommander::commandWrite(uint8_t command, uint8_t data1, uint8_t d
   return Wire.endTransmission();
 }
 
-uint8_t HIH61XXCommander::commandWrite(uint8_t command, uint16_t data)
+uint8_t HIH91XXCommander::commandWrite(uint8_t command, uint16_t data)
 {
   return commandWrite(command, data >> 8, data & 0x00FF);
 }
 
-uint8_t HIH61XXCommander::commandRead(uint8_t* status, uint8_t* data1, uint8_t* data2)
+uint8_t HIH91XXCommander::commandRead(uint8_t* status, uint8_t* data1, uint8_t* data2)
 {
   Wire.requestFrom(a, (uint8_t) (data1 && data2 ? 3 : 1));
   if(Wire.available()) {
@@ -354,14 +354,14 @@ uint8_t HIH61XXCommander::commandRead(uint8_t* status, uint8_t* data1, uint8_t* 
   return Wire.endTransmission();
 }
 
-uint8_t HIH61XXCommander::commandRead(uint8_t* status, uint16_t* data)
+uint8_t HIH91XXCommander::commandRead(uint8_t* status, uint16_t* data)
 {
   return commandRead(status, &reinterpret_cast<uint8_t*>(data)[1], &reinterpret_cast<uint8_t*>(data)[0]);
 }
 
 
 
-uint8_t HIH61XXCommander::commandProcess(Stream& stream, uint8_t command)
+uint8_t HIH91XXCommander::commandProcess(Stream& stream, uint8_t command)
 {
   switch(command) {    
   // get high alarm ...
@@ -531,5 +531,5 @@ uint8_t HIH61XXCommander::commandProcess(Stream& stream, uint8_t command)
     return commandReply(stream, resetEEPROM());
   }
     
-  return HIH61XX::commandProcess(stream, command);
+  return HIH91XX::commandProcess(stream, command);
 }
